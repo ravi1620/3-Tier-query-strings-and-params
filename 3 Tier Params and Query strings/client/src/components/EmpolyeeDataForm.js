@@ -4,7 +4,8 @@ function EmpolyeeDataForm() {
   let countrySelectedRef = useRef();
   let genderSelectedRef = useRef();
   let departmentSelectedRef = useRef();
-
+ 
+  
   useEffect(() => {
     getListFromDB();
   }, []);
@@ -21,7 +22,9 @@ function EmpolyeeDataForm() {
 
   let [employee, setEmployee] = useState([]);
   let getEmployeeDataFromDB = async () => {
-    let url = `http://localhost:1234/getEmployeeData?gender=${genderSelectedRef.current.value}&department=${departmentSelectedRef.current.value}&country=${countrySelectedRef.current.value}`;
+     let url = `http://localhost:1234/getEmployeeData?gender=${genderSelectedRef.current.value}&department=${departmentSelectedRef.current.value}&country=${countrySelectedRef.current.value}`;
+     url = `http://localhost:1234/getEmployeeData/${genderSelectedRef.current.value}/${departmentSelectedRef.current.value}/${countrySelectedRef.current.value}`;
+
     let requestOptions = { method: "GET" };
     let jsonData = await fetch(url, requestOptions);
     let jsoData = await jsonData.json();
@@ -62,6 +65,7 @@ function EmpolyeeDataForm() {
               : null}
           </select>
         </div>
+            
         
 
         <button
