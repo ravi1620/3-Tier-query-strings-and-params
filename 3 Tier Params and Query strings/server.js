@@ -37,12 +37,12 @@ app.get("/lists", async (req, res) => {
 });
 
 // API(resource) for getting employee data in client through this API point.
-app.get("/getEmployeeData", async (req, res) => {
-  console.log(req.query);
+app.get("/getEmployeeData/:gender/:department/:country", async (req, res) => {
+  console.log(req.params);
   let employeeData = await Employee.find().and([
-    {gender:req.query.gender},
-{department:req.query.department},
-    { country: req.query.country }
+    {gender:req.params.gender},
+{department:req.params.department},
+    { country: req.params.country }
   ]);
 
   res.json(employeeData);
